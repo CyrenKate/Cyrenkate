@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Art Commission Scheduling</title>
+	</head>
+	<style>
+		body{
+			background-color:#AA98A9;
+		}
+		/*title*/
+		.header{
+			text-align: center;
+			font-family: Apple Chancery, cursive;
+			color: 	white;
+			font-size: 60px;
+		}
+		/*container*/
+		.container {
+			border-radius:  5px;
+			background-color:  whitesmoke;
+			padding: 10px;
+		}
+
+		/*body*/
+			input[type=text],[type=email],[type=tel], select, textarea {
+			width: 100%;
+			padding: 12px;
+			border: 1px solid #ccc;
+			margin-top: 6px;	
+			margin-bottom: 16px;
+			resize: vertical;
+		}
+		/*table*/
+		table{
+			table-layout: fixed;
+ 			width: 100%;
+  			border-collapse: collapse;
+  			border: 2px solid #AA98A9;
+  			background-color: lavender;
+  			margin-left: auto;
+  			margin-right: auto;
+
+
+  		}
+		th, td {
+  			padding: 10px;
+
+		}
+		th {
+			letter-spacing: 1px;
+		}
+
+		td {
+  			letter-spacing: 1px;
+  			font-size: 12px;
+		}
+		tbody td, th{
+  			text-align: center;
+
+		}
+
+	
+	</style>
+
+	<body>
+		{% include 'navigationbar.html' %}
+		{% block content %}
+		{% endblock %}
+		{% load static %}
+	</body>
+
+</html>
+

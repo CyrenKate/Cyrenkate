@@ -1,0 +1,60 @@
+{% extends 'bases.html' %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% block content %}
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<style>
+		.decor{
+			text-align: center;
+			font-family: Trattatello, fantasy;
+			color: 	#FFD700;
+			font-size: 20px;
+		}
+		.containermain {
+			border-radius:  20px;
+			background-color: lavender;
+			padding: 25px;
+			margin-right: 20px;
+			right: 0;
+			width: 50%;
+		}
+		.containertwo{
+			border-radius:  20px;
+			background-color: lavender;
+			padding: 25px;
+			/*position:  absolute;*/
+			margin-right: 20px;
+			right: 0;
+			width: 50%;
+		}
+
+	</style>
+	</head>
+
+	<body>
+	<h1 class="header"> Author Info </h1>
+	<p class="decor"> Digital Art Commission Scheduling </p>
+		<br>
+		<br>
+	<center>
+		<div class="containermain">
+		<p class="paragraph">
+		<p>Background About Me</p>
+		Hi! I am Cyren Kate V. De Belen from BSIE-ICT-4A. And this is my project for my major subject. </p>
+		</div>		
+		<br>
+		<br>
+		<div class="containertwo">
+		<p class="paragraph">
+		<p>Contact N0.</p>
+		<p>09753795932 </p>
+		<p>Business Email</p>
+		<p>unickus.gaming@gmail.com<p>
+
+	</div>
+	
+</body>
+</html>
+{% endblock %}

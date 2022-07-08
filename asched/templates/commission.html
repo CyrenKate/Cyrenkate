@@ -1,0 +1,139 @@
+{% extends 'bases.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		{% block content %}
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Art Commission Scheduling</title>
+	<style>
+		.column {
+			float:  left;
+			width:  50%;
+			margin-top: 6px;
+			padding: 20px;
+		}
+		.row:after{
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		/*Confirm button*/
+		
+		.btn {
+			background-color: #AA98A9;
+			text-decoration: none;
+			display: inline-block;
+			margin-left: 50%;
+			padding:  8px 16px;
+			border-radius:  10px;
+			
+		}
+		.btn:hover {
+			background-color: lightsteelblue;
+			color: white;
+		}
+
+		/*next button*/
+		.next {
+			background-color: #AA98A9;
+			color: black;
+		    margin-left: 35%;
+		    display: inline-block;
+		    border-radius:  10px;
+
+		}
+
+		a {
+			text-decoration: none;
+			padding:  8px 16px;
+		    display: inline-block;
+		    /*border-radius:  10px;*/
+		    color: black;
+		}			
+		.next a:hover {
+			background-color: lightsteelblue;
+			color: white;
+			}
+		
+	</style> 
+</head>	
+
+<body>
+{% if item %}
+	<form method="POST" action="{% url 'update_basic' item.id %}" >
+	{% csrf_token %}
+	<br>
+		<h1 class="header"> Digital Art Commission  </h1>
+	<br>
+	
+	<div class="container">
+		<strong>
+			<p style="font-size:20px;"> Client Info</p>
+		</strong>
+	<div class="row">
+
+	<div class="column">
+	<label>SurName:</label>
+	<input id="cl_surname" type="text" size="30" value = "{{item.cl_surname}}" name="cl_surname" placeholder="Enter your SurName here." required/>
+
+	<label>FirstName:</label>
+	<input id="cl_firstname" type="text" size="30" value = "{{item.cl_firstname}}" name="cl_firstname" placeholder="Enter your FirstName here." required/>
+		
+	<label>MiddleName:</label>
+	<input id="cl_middlename" type="text" size="30" value = "{{item.cl_middlename}}" name="cl_middlename" placeholder="Enter your MiddleName here." required/>
+
+	<label for="email">Email:</label>
+	<input id="cl_email" type="email" size="30" value = "{{item.cl_email}}" name="cl_email" placeholder="Enter your email" required/>
+		
+	<label for="phone">Contact:</label>
+	<input id="cl_phonenum" type="tel" size="30" value = "{{item.cl_contact}}" name="cl_contact" placeholder="enter phone number" pattern="[0-9]{4)-[0-9]{3}-[0-9]{4}" required>
+</div>
+
+<button type="submit" id="btnConfirm" class="btn">SUBMIT</button>
+<button type="submit" class="next"><a href="{% url 'artstyle' %}">NEXT &raquo;</a></button>
+	</form>
+{% else %}
+	<form method="POST" action="{% url 'commission' %}" >
+	{% csrf_token %}
+	<br>
+		<h1 class="header"> Digital Art Commission  </h1>
+	<br>
+	
+	<div class="container">
+		<strong>
+			<p style="font-size:20px;"> Client Info</p>
+		</strong>
+	<div class="row">
+		<div class="column">
+		</div>
+
+	<div class="column">
+	<label>SurName:</label>
+	<input id="cl_surname" type="text" size="30" name="cl_surname" placeholder="Enter your SurName here." required/>
+
+	<label>FirstName:</label>
+	<input id="cl_firstname" type="text" size="30" name="cl_firstname" placeholder="Enter your FirstName here." required/>
+		
+	<label>MiddleName:</label>
+	<input id="cl_middlename" type="text" size="30" name="cl_middlename" placeholder="Enter your MiddleName here." required/>
+
+	<label for="email">Email:</label>
+	<input id="cl_email" type="email" size="30" name="cl_email" placeholder="Enter your email" required/>
+		
+	<label for="phone">Contact:</label>
+	<input id="cl_phonenum" type="tel" size="30" name="cl_contact" placeholder="enter phone number" pattern="[0-9]{4)-[0-9]{3}-[0-9]{4}" required>
+</div>
+
+<button type="submit" id="btnConfirm" class="btn">SUBMIT</button>
+<button type="submit" class="next"><a href="{% url 'artstyle' %}">NEXT &raquo;</a></button>
+	</form>
+{% endif %}
+	
+</div>
+</div>
+</body>
+</html>
+{% endblock %}

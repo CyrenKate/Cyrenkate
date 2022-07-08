@@ -1,0 +1,186 @@
+{% extends 'bases.html' %}
+<!DOCTYPE html>
+<html lang="en">
+	{% block content %}
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Art Commission Scheduling</title>
+	<style>
+
+			.container {
+				border-radius:  5px;
+				background-color:  whitesmoke;
+				padding: 10px;
+		}
+			.container .containerone {
+				border-radius:  5px;
+				background-color:  lightsteelblue;
+				padding: 25px;
+				text-align: center;
+			}
+		
+			.column {
+				float:  right;
+				width:  50%;
+				margin-top: 6px;
+				padding: 20px;
+
+			}
+			.row:after{
+				content: "";
+				display: table;
+				clear: both;
+			}
+
+			@media screen and (max-width: 600px){
+				.column,input[type=submit]{
+					width:  100%;
+					margin-top: 0;
+				}
+			}
+			.parent .child{
+				margin-buttom: 6px;
+				width: calc(100% / 2 - 20px);
+				padding: 5px;
+				border-radius: 5px;
+				margin-top: 0px;
+			}
+		/*Confirm button*/
+		
+		.btn {
+			background-color: #AA98A9;
+			text-decoration: none;
+			display: inline-block;
+			margin-left: 50%;
+			padding:  8px 16px;
+			border-radius:  10px;
+			
+		}
+		.btn:hover {
+			background-color: lightsteelblue;
+			color: white;
+		}
+
+			.previous {
+				background-color: whitesmoke;
+				color: black;
+				/*padding-buttom: 25px;*/
+			}
+			/*file upload*/
+			input[type=file]::file-selector-button{
+				text-decoration: none;
+				display: inline-block;
+				padding:  8px 16px;
+				margin-top: 4px;
+			
+			}
+			input[type=file]::file-selector-button:hover{
+				background-color: black;
+				color: white;
+			}
+			/*Confirm button*/
+			input.submit{
+			float:right;
+			text-decoration: none;
+			display: inline-block;
+			margin-right: 20px;
+			width: 10%;
+			height:40px;
+			}
+			input:hover{
+			background-color: lightsteelblue;
+				color: white;
+			}
+</style>
+	</head>	
+<body style="background-color:#AA98A9;">
+	<form method="POST" action="{% url 'comstwo' %}" >
+	{% csrf_token %}
+		<br>
+			<h1 class="header"> Digital ART Commission  </h1>
+		<br>
+		<br>
+
+	<div class="container">
+		<strong>
+			<p style="font-size:20px; text-align: center;"> Terms of Service</p>
+	</strong>
+		<div class="containerone">
+			<p>1. The Artist need atleast 2 weeks to finish the art.</p>
+			<br>
+			<p>2. The Artist only accept no background; atleast simple background can do and is free.</p>
+			<br>
+			<p>3. The Artist will draw on its own artstyle.</p>
+			<br>
+			<p>4. The Price is set for one character only</p>
+			<br>
+			<p>5. The Artist accept first half payment first</p>
+			<br>
+		</div>
+		<br>
+		<div class="row">
+			<div class="column">
+				<strong>
+					<p style="font-size:20px; float:right; margin-right:80%;">References</p>
+				</strong>		
+			
+			<label for="meeting-time">Date today:</label>
+			<br>
+			<input type="date" id="meeting-time" name="currentdatetime"/>
+			<br>
+			<br>
+
+	<div class="parent">
+		<section class="child">
+			<label>File Format</label>
+			<select name="fileformat" required>
+				<option value="" selected hidden disabled>Select File Format</option>
+				<option value="png">PNG</option>
+				<option value="tiff">TIFF</option>
+				<option value="pdf">PDF</option>
+			</select>
+		</section>
+		<section class="child">
+			<label>Background</label>
+			<select name="background" required>
+				<option value="" selected hidden disabled>Select Background</option>
+				<option value="transparent">Transparent</option>
+				<option value="simple">Simple </option>
+			</select>
+		</section>
+</div>
+</div>
+
+<button type="submit" id="btnConfirm" class="btn">SUBMIT</button>
+</form>
+<table id="portraitTable">
+
+		<thead>	
+
+			<tr>
+				<th>No.</th>
+				<th>Date</th>
+				<th>File Format</th>
+				<th>Background</th>
+
+			</tr>
+		</thead>
+			{% for item in itemtwo %}
+
+		<tbody>
+			<tr>
+				<td>{{forloop.counter}}:</td>
+				<td>{{item.currentdatetime}}</td>
+				<td>{{item.fileformat}}</td>
+				<td>{{item.background}}</td>
+
+							 
+			</tr>
+		</tbody>
+				{% endfor %}
+	</table>
+</div>
+</body>
+</html>
+{% endblock %}

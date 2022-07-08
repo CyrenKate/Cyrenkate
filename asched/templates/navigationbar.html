@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% block content %}
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		
+	<style>
+			table, th, td {
+  				border: 1px solid black;
+  				border-collapse: collapse;
+			}
+			* {
+				box-sizing: border-box ;
+
+			}
+
+			.topnav {
+				overflow: hidden;
+				background-color: whitesmoke;
+			}
+
+			.topnav a {
+				float: left;
+				color: black;
+				text-align: center;
+				padding: 14px 16px;
+				text-decoration: none;
+				font-size:  17px;
+			}
+
+			.topnav a:hover {
+				background-color: salmon;
+				color: whitesmoke;
+				text-decoration: none;
+			}
+
+			.topnav a.active{
+			
+				color:  black;
+			}
+
+			.logo{
+				float: right;
+			}
+	
+</style>
+	</head>
+	<body>
+		<div class="topnav">
+			<a href="{% url 'mainpage' %}">Home</a>
+			<a href="{% url 'commission' %}">Commission</a>
+			<a href="{% url 'basic_info' %}">Client</a>
+			<a href="{% url 'authorinfo' %}">About</a>
+			<div class="logo">
+				<h3 style="font-size:15px;"> Digital Art Commission Scheduling &nbsp</h3>
+			</div>
+		</div>
+	</body>
+</html>
+{% endblock %}

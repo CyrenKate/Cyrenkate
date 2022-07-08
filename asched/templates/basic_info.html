@@ -1,0 +1,55 @@
+{% extends 'bases.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		{% block content %}
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Art Commission Scheduling</title>
+</head>	
+
+<body>
+	<br>
+		<h1 class="header"> Your Basic Information  </h1>
+	<br>
+	<br>
+	<br>
+
+<div class="container">
+	<table id="commissionTable">
+
+		<thead>	
+
+			<tr>
+				<th>NO.</th>
+				<th>Surname</th>
+				<th>Firstname</th>
+				<th>Middlename</th>
+				<th>Email</th>
+				<th>Contact</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+			{% for item in itemone %}
+		<tbody>
+			<tr>
+				<td>{{forloop.counter}}:</td>
+				<td>{{item.cl_surname}}</td>
+				<td>{{item.cl_firstname}}</td>
+				<td>{{item.cl_middlename}}</td>
+				<td>{{item.cl_email}}</td>
+				<td>{{item.cl_contact}}</td>
+				<td><a href="{% url 'edit_basic' item.id %}">Edit</a></td>
+				<td><a href="{% url 'delete_basic_info' item.id %}">Delete</a></td>			
+			</tr>
+		</tbody>
+				{% endfor %}
+	</table>
+</div>
+
+
+</body>
+</html>
+{% endblock %}

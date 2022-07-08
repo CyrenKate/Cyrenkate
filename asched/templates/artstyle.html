@@ -1,0 +1,252 @@
+{% extends 'bases.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		{% block content %}
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Art Commission Scheduling</title>
+	<style>
+		.art_preference .parent{
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				margn:  20px 0 12px 0;
+
+
+			}
+			.parent .child{
+				margin-buttom: 6px;
+				width: calc(100% / 2 - 20px);
+				padding: 5px;
+				border-radius: 5px;
+				margin-top: 0px;
+			}
+			/*Confirm button*/
+		
+		.btn {
+			background-color: #AA98A9;
+			text-decoration: none;
+			display: inline-block;
+			margin-right: 50%;
+			padding:  8px 16px;
+			border-radius:  10px;
+			
+		}
+		.btn:hover {
+			background-color: lightsteelblue;
+			color: white;
+		}
+		/*next*/
+		.next {
+			background-color: #AA98A9;
+		    margin-left: 35%;
+		    display: inline-block;
+		    border-radius:  10px;
+
+		}
+
+		a {
+			
+			text-decoration: none;
+			padding:  8px 16px;
+		    display: inline-block;
+		    /*border-radius:  10px;*/
+		    color: black;
+		}			
+		.next a:hover {
+			background-color: lightsteelblue;
+			color: white;
+			}
+	</style>
+</head>	
+
+<body>
+	<form method="POST" action="{% url 'artstyle' %}">
+	{% csrf_token %}
+		<br>
+		<h1 class="header"> Digital ART Commission  </h1>
+	<br>
+	<br>
+	<div class="container">
+	<strong>
+		<p style="font-size:20px;"> Art Preferences</p>
+	</strong>
+
+<div class="art_preference">
+		<div class="parent">
+			<section class="child">
+			<label>Portrait Shot</label>
+			<select name="shot" id="shot" onchange="getportraitshot_price(this.value)" required>
+				<option value="" selected hidden disabled>Select Portrait Shot</option>
+				<option value="headshot">Headshot</option>
+				<option value="bust">Bust</option>
+				<option value="halfbody">Half Body</option>
+				<option value="wholebody">Whole Body</option>
+			</select>
+		</section>
+		<section class="child">
+			<label>Price</label>
+			<input name="shot_price" type="text" id="shot_price" readonly>
+		</section>
+</div>
+<div class="parent">
+		<section class="child">	
+			<label>Art Style</label>
+			<select name="art" id="art" onchange="getartstyle_price(this.value)" required>
+				<option value="" selected hidden disabled>Select Art Style </option>
+				<option value="anime">Anime Art Style</option>
+				<option value="chibi">Chibi Art Style</option>
+				<option value="pixel">Pixel Art Style</option>
+				<option value="vector">Vector Art Style</option>
+			</select>
+		</section>
+		<section class="child">
+			<label>Price</label>
+			<input name="art_price" type="text" id="art_price" readonly>
+		</section>
+</div>
+
+ <div class="parent">
+		<section class="child">	
+			<label>Portrait Color</label>
+			<select name="color" id="color" onchange="getcolor_price(this.value)" required>
+				<option value="" selected hidden disabled>Select Color</option>
+				<option value="sketch">Sketch</option>
+				<option value="blackwhite">Black & White</option>
+				<option value="fullcolor">Full Color</option>
+			</select>
+		</section>
+		<section class="child">
+			<label>Price</label>
+			<input name="color_price" type="text" id="color_price" readonly>
+		</section>
+</div>
+
+<div class="parent">
+		<section class="child">	
+			<label>Canvas Size</label>
+			<select name="sizes" id="sizes" onchange="getcanvas_price(this.value)" required>
+				<option value="" selected hidden disabled>Select Canvas Size</option>
+				<option value="twoxtwo">2000 x 2000</option>
+				<option value="threexthree">3300 x 2550</option>
+				<option value="fourxfour">4000 x 4000</option>
+			</select>
+		</section>
+	<section class="child">
+			<label>Price</label>
+			<input name="size_price" type="text" id="size_price" readonly>
+		</section>
+</div>
+<div class="parent">
+		<section class="total">	
+		<label>Total Price To Pay:</label>
+		<span id="total" style="font-weight: bold;">0</span>
+		<section>
+			<br>
+			<br>
+</div>
+ <script>
+
+			function getPrice(resultID, value, object){
+				document.getElementById(resultID).value = object[value];
+				getTotal();
+			}
+			function getportraitshot_price(value){
+				getPrice('shot_price', value, {
+					headshot: 150,
+					bust: 200,
+					halfbody: 250,
+					wholebody: 300
+				});
+			}
+			function getartstyle_price(value){
+				getPrice('art_price', value, {
+					anime: 100,
+					chibi: 150,
+					pixel: 200,
+					vector: 250
+				});
+			}
+			function getcolor_price(value){
+				getPrice('color_price', value, {
+					sketch: 100,
+					blackwhite: 150,
+					fullcolor: 200
+				});
+			}
+			function getcanvas_price(value){
+				getPrice('size_price', value, {
+					twoxtwo: 100,
+					threexthree: 150,
+					fourxfour: 200
+				});
+			}
+			function getTotal() {
+				var total = 0.0;
+				var portraitShot = document.getElementById('shot_price').value;
+				var artStyle = document.getElementById('art_price').value;
+				var color = document.getElementById('color_price').value;
+				var canvas = document.getElementById('size_price').value;
+
+				var prices = [
+					(parseInt(portraitShot) === NaN || portraitShot.length === 0) ? 0 : portraitShot,
+					(parseInt(artStyle) === NaN || artStyle.length === 0) ? 0 : artStyle,
+					(parseInt(color) === NaN || color.length === 0) ? 0 : color,
+					(parseInt(canvas) === NaN || canvas.length === 0) ? 0 : canvas,
+				]
+
+				prices.forEach(function(value) {
+					total += parseInt(value, 10);
+				});
+
+				document.getElementById("total").innerHTML = total;
+			}
+		</script>
+
+</div>
+<button type="submit" id="btnConfirm" class="btn">SUBMIT</button>
+<button type="submit" class="next"><a href="{% url 'comstwo' %}">NEXT &raquo;</a></button>
+</form>
+<table id="portraitTable">
+
+		<thead>	
+
+			<tr>
+				<th>No.</th>
+				<th>Portrait Shot</th>
+				<th>Price</th>
+				<th>Art Style</th>
+				<th>Price</th>
+				<th>Color</th>
+				<th>Price</th>
+				<th>Canvas Size</th>
+				<th>Price</th>
+
+			</tr>
+		</thead>
+			{% for item in itemthree %}
+
+		<tbody>
+			<tr>
+				<td>{{forloop.counter}}:</td>
+				<td>{{item.shot}}</td>
+				<td>{{item.shot_price}}</td>
+				<td>{{item.art}}</td>
+				<td>{{item.art_price}}</td>
+				<td>{{item.color}}</td>
+				<td>{{item.color_price}}</td>
+				<td>{{item.sizes}}</td>
+				<td>{{item.size_price}}</td>
+						 
+			</tr>
+		</tbody>
+				{% endfor %}
+	</table>
+</div>
+</div>
+</div>
+</body>
+</html>
+{% endblock %}
