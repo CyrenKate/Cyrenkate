@@ -1,0 +1,58 @@
+{% extends 'bases.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	{% block content %}
+<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Art Commission Scheduling</title>
+		<!-- <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}"> -->
+	<style>
+		
+		.decor{
+			text-align: center;
+			font-family: Trattatello, fantasy;
+			color: 	#FFD700;
+			font-size: 20px;
+		}
+		.containermain {
+			border-radius:  20px;
+			background-color: lavender;
+			padding: 25px;
+			position:  absolute;
+			margin-right: 20px;
+			right: 0;
+			width: 50%;
+		}
+		.containermain .paragraph{
+			font-family: Comic Sans MS, Comic Sans, cursive;
+			font-size: 30px;
+		}
+		.containermain p{
+			font-family: Trattatello, fantasy;;
+			font-size: 10px;
+			color: 	#FFD700;
+		}
+
+	</style>
+
+</head>
+
+<body>
+	<form method="POST">
+	<h1 class="header"> Digital Art Commission Scheduling </h1>
+	<p class="decor"> Digital Art Commission Scheduling </p>
+		<br>
+		<br>
+	<center>
+		<div class="containermain">
+		<p class="paragraph">
+		<p>Digital Art Commission Scheduling</p>
+		Digital Art Commission is a website where you can request commissioning arts on the artist based on your preferences and the like. I hope you enjoy your stay here and God bless  </p>
+		<p>Digital Art Commission Scheduling</p>	
+		</div>		
+	</form>
+</body>
+</html>
+{% endblock %}
